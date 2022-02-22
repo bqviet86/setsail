@@ -916,7 +916,7 @@ iframe {
 .slides {
     position: relative;
     height: 420px;
-    display: none;
+    /* display: none; */
 }
 
 .slider {
