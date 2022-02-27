@@ -1,0 +1,156 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black-color: #000;
+    --text-color: #333;
+    --white-color: #fff;
+}
+
+::selection {
+    color: var(--white-color);
+    background-color: #3fd0d4;
+}
+
+html {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.2px;
+    color: var(--black-color);
+    scroll-behavior: smooth;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+    height: 0;
+    width: 8px;
+    background-color: rgb(230, 230, 230);
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: #777;
+    border-radius: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+a.no-link {
+    cursor: default;
+}
+
+ul {
+    list-style: none;
+}
+
+input {
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/* ANIMATION */
+@keyframes autoHeight {
+    0% {
+        max-height: 100vh;
+        overflow: unset;
+    }
+    75% {
+        max-height: 10px;
+    }
+    100% {
+        max-height: 0;
+        overflow: hidden;
+    }
+}
+
+@keyframes autoHeight1 {
+    0% {
+        max-height: 0;
+        opacity: 0.5;
+        overflow: hidden;
+    }
+    25% {
+        opacity: 1;
+    }
+    100% {
+        max-height: 100vh;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 1;
+        z-index: 1;
+    }
+    99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    100% {
+        opacity: 1;
+        z-index: -1;
+    }
+}
+
+@keyframes slideUp {
+    0%, 99% {
+        z-index: -1;
+    }
+    100% {
+        z-index: 1;
+    }
+}
+
+@keyframes zoomImg {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes textUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

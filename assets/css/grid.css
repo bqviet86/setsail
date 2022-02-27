@@ -1,0 +1,44 @@
+.row {
+    display: flex;
+}
+
+.col-2-4 {
+    min-width: calc(calc(100% - 80px) / 5);
+}
+
+.col-2-4:not(:last-child) {
+    margin-right: 20px;
+}
+
+.col-2-4-space-6 {
+    padding: 0 3px;
+    width: 20%;
+}
+
+.col-3 {
+    width: 25%;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+.col-3-space-0 {
+    min-width: 25%;
+}
+
+.col-3-space-30 {
+    padding: 0 15px;
+    width: 25%;
+}
+
+.col-4 {
+    min-width: calc(calc(100% - 80px) / 3);
+}
+
+.col-4:not(:last-child) {
+    margin-right: 40px;
+}
+
+.col-4-space-80 {
+    padding: 0 40px;
+    width: 33.33333%;
+}

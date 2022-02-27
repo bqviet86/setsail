@@ -315,26 +315,60 @@ window.addEventListener('scroll', function() {
     }
 })
 
-// MOBILE
-// let navList = $('.navbar-list');
-// let innerHeaders = $$('.inner');
+// HEADER MOBILE
+let navResp = $('.nav-resp'); 
+let headerRespMenu = $('.header-resp-menu');
 
-// setInterval(function() {
-//     let appWidth = app.offsetWidth;
+headerRespMenu.addEventListener('click', function() {
+    let checkNavResp = navResp.classList.contains('open');
 
-//     if(appWidth <= 1192) {
-//         navList.style.width = appWidth + 'px';
-//         for(let innerHeader of innerHeaders) {
-//             innerHeader.style.width = appWidth + 'px';
-//         }
-//     }
-//     else {
-//         navList.style.width = 'auto';
-//         for(let innerHeader of innerHeaders) {
-//             innerHeader.style.width = 'auto';
-//         }
-//     }
-// }, 1);
+    if(!checkNavResp) {
+        navResp.classList.add('open');
+    }
+    else {
+        navResp.classList.remove('open');
+    }
+});
 
-// INNER 
-// let navListItem = $$('.navbar-list-item');
+function openNavItemMobile({
+    level = ''
+}) {
+    let navRespItemLinkWraps = $$(`.nav-resp-item-link-wrap.${level}`);
+
+    for(let i = 0; i < navRespItemLinkWraps.length; i++) {
+        let navRespItemLinkWrap = navRespItemLinkWraps[i];
+        navRespItemLinkWrap.addEventListener('click', function() {
+            let navRespInner = $$(`.nav-resp-inner.${level}`);
+            let navRespIcon = $$(`.nav-resp-icon.${level}`);
+
+            let checkNavRespInner = navRespInner[i].classList.contains('open');
+
+            if(!checkNavRespInner) {
+                for(let navRespInnerItem of navRespInner) {
+                    navRespInnerItem.classList.remove('open');
+                }
+
+                for(let navRespIconItem of navRespIcon) {
+                    navRespIconItem.style.transform = 'rotate(-90deg)';
+                }
+
+                navRespInner[i].classList.add('open');
+                navRespIcon[i].style.transform = 'rotate(0)';
+                navResp.style.height = '336px';
+            }
+            else {
+                navRespInner[i].classList.remove('open');
+                navRespIcon[i].style.transform = 'rotate(-90deg)';
+                navResp.style.height = '294px';
+            }
+        });
+    }
+}
+
+openNavItemMobile({
+    level: 'lv1'
+});
+
+openNavItemMobile({
+    level: 'lv2'
+});
