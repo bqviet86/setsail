@@ -404,7 +404,7 @@ let headerRespUser = $('.header-resp-user');
 
 headerRespUser.addEventListener('click', function() {
     modal.innerHTML = `
-        <div class="modal-overlay" style="background-color: rgba(255, 255, 255, .36);"></div>
+        <div class="modal-overlay" style="background-color: rgba(255, 255, 255, .7);"></div>
     `;
 
     openModal();
