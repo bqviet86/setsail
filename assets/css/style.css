@@ -172,6 +172,7 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-snap-stop: always;
+    scroll-behavior: smooth;
     transition: .2s ease-out;
 }
 
