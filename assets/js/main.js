@@ -318,6 +318,7 @@ window.addEventListener('scroll', function() {
 // HEADER MOBILE
 let navResp = $('.nav-resp'); 
 let headerRespMenu = $('.header-resp-menu');
+let maxLevel = 2;
 
 headerRespMenu.addEventListener('click', function() {
     let checkNavResp = navResp.classList.contains('open');
@@ -331,25 +332,30 @@ headerRespMenu.addEventListener('click', function() {
 });
 
 function openNavItemMobile({
-    level = ''
+    level = 0
 }) {
-    let navRespItemLinkWraps = $$(`.nav-resp-item-link-wrap.${level}`);
+    let navRespItemLinkWraps = $$(`.nav-resp-item-link-wrap.lv${level}`);
 
     for(let i = 0; i < navRespItemLinkWraps.length; i++) {
         let navRespItemLinkWrap = navRespItemLinkWraps[i];
         navRespItemLinkWrap.addEventListener('click', function() {
-            let navRespInner = $$(`.nav-resp-inner.${level}`);
-            let navRespIcon = $$(`.nav-resp-icon.${level}`);
+            let navRespInner = $$(`.nav-resp-inner.lv${level}`);
+            let navRespIcon = $$(`.nav-resp-icon.lv${level}`);
 
             let checkNavRespInner = navRespInner[i].classList.contains('open');
 
             if(!checkNavRespInner) {
-                for(let navRespInnerItem of navRespInner) {
-                    navRespInnerItem.classList.remove('open');
-                }
+                for(let i = level; i <= maxLevel; i++) {
+                    let navRespInnerClose = $$(`.nav-resp-inner.lv${i}`);
+                    let navRespIconClose = $$(`.nav-resp-icon.lv${i}`);
 
-                for(let navRespIconItem of navRespIcon) {
-                    navRespIconItem.style.transform = 'rotate(-90deg)';
+                    navRespInnerClose.forEach(item => {
+                        item.classList.remove('open');
+                    });
+
+                    navRespIconClose.forEach(item => {
+                        item.style.transform = 'rotate(-90deg)';
+                    });
                 }
 
                 navRespInner[i].classList.add('open');
@@ -365,13 +371,11 @@ function openNavItemMobile({
     }
 }
 
-openNavItemMobile({
-    level: 'lv1'
-});
-
-openNavItemMobile({
-    level: 'lv2'
-});
+for(let i = 1; i <= maxLevel; i++) {
+    openNavItemMobile({
+        level: i
+    });
+}
 
 // USER
 let userOptionBtns = $$('.modal-user-option-btn');
