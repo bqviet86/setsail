@@ -322,12 +322,26 @@ let maxLevel = 2;
 
 headerRespMenu.addEventListener('click', function() {
     let checkNavResp = navResp.classList.contains('open');
+    let navRespInner = $$(`.nav-resp-inner`);
+    let navRespIcon = $$(`.nav-resp-icon`);
 
     if(!checkNavResp) {
         navResp.classList.add('open');
     }
     else {
-        navResp.classList.remove('open');
+        navRespInner.forEach(item => {
+            item.classList.remove('open');
+        });
+
+        navRespIcon.forEach(item => {
+            item.style.transform = 'rotate(-90deg)';
+        });
+
+        navResp.style.height = '294px';
+
+        setTimeout(function() {
+            navResp.classList.remove('open');
+        }, 600);
     }
 });
 
