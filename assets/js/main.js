@@ -168,7 +168,7 @@ function runTour() {
     }
 }
 
-let tourIntervalID = setInterval(runTour, 2000);
+let tourIntervalID = setInterval(runTour, 4000);
 
 for(let i = 0; i < paginationTourBtns.length; i++) {
     let paginationBtn = paginationTourBtns[i];
@@ -192,7 +192,7 @@ for(let i = 0; i < paginationTourBtns.length; i++) {
 
         runTour();
         
-        tourIntervalID = setInterval(runTour, 2000);
+        tourIntervalID = setInterval(runTour, 4000);
     })
 }
 
@@ -260,7 +260,7 @@ function runReview() {
     }
 }
 
-let reviewIntervalID = setInterval(runReview, 2000);
+let reviewIntervalID = setInterval(runReview, 4000);
 
 for(let i = 0; i < paginationReviewBtns.length; i++) {
     let paginationBtn = paginationReviewBtns[i];
@@ -281,7 +281,7 @@ for(let i = 0; i < paginationReviewBtns.length; i++) {
 
         runReview();
         
-        reviewIntervalID = setInterval(runReview, 2000);
+        reviewIntervalID = setInterval(runReview, 4000);
     })
 }
 
@@ -372,3 +372,55 @@ openNavItemMobile({
 openNavItemMobile({
     level: 'lv2'
 });
+
+// USER
+let userOptionBtns = $$('.modal-user-option-btn');
+
+for(let userOptionBtn of userOptionBtns) {
+    userOptionBtn.addEventListener('click', function() {
+        for(i = 0; i < userOptionBtns.length; i++) {
+            userOptionBtns[i].classList.remove('active');
+        }
+        this.classList.add('active');
+
+        let checkLogin = this.classList.contains('login');
+        let checkRegister = this.classList.contains('register');
+
+        let forms = $$('.modal-user-content');
+
+        for(let form of forms) {
+            form.style.display = 'none';
+        }
+        if(checkLogin) {
+            let formLogin = $('.modal-user-content.login').style.display = 'flex';
+        }
+        if(checkRegister) {
+            let formRegister = $('.modal-user-content.register').style.display = 'flex';
+        }
+    });
+}
+
+let headerRespUser = $('.header-resp-user');
+
+headerRespUser.addEventListener('click', function() {
+    modal.innerHTML = `
+        <div class="modal-overlay" style="background-color: rgba(255, 255, 255, .36);"></div>
+    `;
+
+    openModal();
+
+    let modalUser = $('.modal-main.modal-main-user');
+    modalUser.classList.add('open');
+
+    let modalOverlay = $('.modal-overlay');
+    modalOverlay.addEventListener('click', function() {
+        closeModal();
+        modalUser.classList.remove('open');
+    });
+
+    let modalClose = $('.modal-close');
+    modalClose.addEventListener('click', function() {
+        closeModal();
+        modalUser.classList.remove('open');
+    });
+})
