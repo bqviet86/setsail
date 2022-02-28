@@ -535,21 +535,7 @@
     z-index: 500;
     inset: 50% auto auto 50%;
     transform: translate(-50%, -50%);
-    transition: .5s ease-in;
-}
-
-.modal-main.modal-main-search, 
-.modal-close.search {
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: .5s ease-out;
-}
-
-.modal-main.modal-main-search.open, 
-.modal-close.search.open {
-    opacity: 1;
-    visibility: visible;
+    transition: .4s ease-in;
 }
 
 .modal-main.modal-main-menu {
@@ -709,6 +695,7 @@
 .modal-overlay {
     position: absolute;
     inset: 0;
+    background-color: rgb(63, 208, 212, .8);
     z-index: 499;
 }
 
