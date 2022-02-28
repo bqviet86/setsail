@@ -8,55 +8,6 @@ let menuBtn = $('.header-right__icon:nth-child(3)');
 let modal = document.createElement('div');
 modal.classList.add('modal');
 
-searchBtn.addEventListener('click', function() {
-    let innerSearch = `
-        <div class="modal-close">
-            <i class="ti-close"></i>
-        </div>
-        <div class="modal-main modal-main-search">
-            <div class="modal-search">
-                <input type="text" placeholder="Search...">
-                <div class="modal-search-btn">Find Now</div>
-            </div>
-        </div>
-        <div class="modal-overlay"></div>
-    `;
-
-    modal.innerHTML = innerSearch;
-    openModal();
-
-    let modalOverlay = $('.modal-overlay');
-    modalOverlay.addEventListener('click', closeModal);
-
-    let modalClose = $('.modal > .modal-close');
-    modalClose.addEventListener('click', closeModal);
-})
-
-// MODAL-MENU-MAP
-menuBtn.addEventListener('click', function() {
-    modal.innerHTML = `
-        <div class="modal-overlay" style="background-color: transparent;"></div>
-    `;
-
-    openModal();
-
-    let modalMenu = document.querySelector('.modal-main.modal-main-menu');
-    modalMenu.classList.add('open');
-
-    let modalOverlay = $('.modal-overlay');
-    modalOverlay.addEventListener('click', function() {
-        closeModal();
-        modalMenu.classList.remove('open');
-    });
-
-    let modalClose = $('.modal-close');
-    modalClose.addEventListener('click', function() {
-        closeModal();
-        modalMenu.classList.remove('open');
-    });
-})
-
-
 function openModal() {
     app.appendChild(modal);
     modal.classList.add('open');
@@ -68,6 +19,85 @@ function closeModal() {
         app.removeChild(modal);
     }, 500);
 }
+
+function useTypeOfModal({
+    type = '', 
+    innerModal = ''
+}) {
+    modal.innerHTML = innerModal;
+
+    openModal();
+
+    let modalType = $(`.modal-main.modal-main-${type}`);
+    modalType.classList.add('open');
+
+    let modalOverlay = $('.modal-overlay');
+
+    let modalClose = $(`.modal-close.${type}`);
+    modalClose.classList.add('open');
+
+    modalOverlay.addEventListener('click', function() {
+        closeModal();
+        modalClose.classList.remove('open');
+        modalType.classList.remove('open');
+    });
+
+    modalClose.addEventListener('click', function() {
+        closeModal();
+        modalClose.classList.remove('open');
+        modalType.classList.remove('open');
+    });
+}
+
+// searchBtn.addEventListener('click', useTypeOfModal({
+//     type: 'search', 
+//     innerModal: '<div class="modal-overlay" style="background-color: rgb(63, 208, 212, .8);"></div>'
+// }));
+
+// let text = 1
+
+// while(text) {
+//     searchBtn.onclick = useTypeOfModal({
+//         type: 'search',
+//         innerModal: '<div class="modal-overlay" style="background-color: rgb(63, 208, 212, .8);"></div>'
+//     });
+    
+//     menuBtn.onclick = useTypeOfModal({
+//         type: 'menu',
+//         innerModal: '<div class="modal-overlay" style="background-color: transparent;"></div>'
+//     });
+// }
+
+
+// menuBtn.addEventListener('click', useTypeOfModal({
+//     type: 'menu', 
+//     innerModal: '<div class="modal-overlay" style="background-color: transparent;"></div>'
+// }));
+
+
+// MODAL-MENU-MAP
+// menuBtn.addEventListener('click', function() {
+//     modal.innerHTML = `
+//         <div class="modal-overlay" style="background-color: transparent;"></div>
+//     `;
+
+//     openModal();
+
+//     let modalMenu = $('.modal-main.modal-main-menu');
+//     modalMenu.classList.add('open');
+
+//     let modalOverlay = $('.modal-overlay');
+//     modalOverlay.addEventListener('click', function() {
+//         closeModal();
+//         modalMenu.classList.remove('open');
+//     });
+
+//     let modalClose = $('.modal-close.menu');
+//     modalClose.addEventListener('click', function() {
+//         closeModal();
+//         modalMenu.classList.remove('open');
+//     });
+// })
 
 // SLIDER 
 let slides = $$('.slider');
@@ -214,7 +244,7 @@ videoWrap.addEventListener('click', function() {
 
     let modalOverlay = $('.modal-overlay');
     modalOverlay.addEventListener('click', closeModal);
-})
+});
 
 // REVIEW
 let reviewList = $('.review-list');
@@ -318,6 +348,7 @@ window.addEventListener('scroll', function() {
 // HEADER MOBILE
 let navResp = $('.nav-resp'); 
 let headerRespMenu = $('.header-resp-menu');
+let maxLevel = 2;
 
 headerRespMenu.addEventListener('click', function() {
     let checkNavResp = navResp.classList.contains('open');
@@ -331,25 +362,30 @@ headerRespMenu.addEventListener('click', function() {
 });
 
 function openNavItemMobile({
-    level = ''
+    level = 0
 }) {
-    let navRespItemLinkWraps = $$(`.nav-resp-item-link-wrap.${level}`);
+    let navRespItemLinkWraps = $$(`.nav-resp-item-link-wrap.lv${level}`);
 
     for(let i = 0; i < navRespItemLinkWraps.length; i++) {
         let navRespItemLinkWrap = navRespItemLinkWraps[i];
         navRespItemLinkWrap.addEventListener('click', function() {
-            let navRespInner = $$(`.nav-resp-inner.${level}`);
-            let navRespIcon = $$(`.nav-resp-icon.${level}`);
+            let navRespInner = $$(`.nav-resp-inner.lv${level}`);
+            let navRespIcon = $$(`.nav-resp-icon.lv${level}`);
 
             let checkNavRespInner = navRespInner[i].classList.contains('open');
 
             if(!checkNavRespInner) {
-                for(let navRespInnerItem of navRespInner) {
-                    navRespInnerItem.classList.remove('open');
-                }
+                for(let i = level; i <= maxLevel; i++) {
+                    let navRespInnerClose = $$(`.nav-resp-inner.lv${i}`);
+                    let navRespIconClose = $$(`.nav-resp-icon.lv${i}`);
 
-                for(let navRespIconItem of navRespIcon) {
-                    navRespIconItem.style.transform = 'rotate(-90deg)';
+                    navRespInnerClose.forEach(item => {
+                        item.classList.remove('open');
+                    });
+
+                    navRespIconClose.forEach(item => {
+                        item.style.transform = 'rotate(-90deg)';
+                    });
                 }
 
                 navRespInner[i].classList.add('open');
@@ -365,62 +401,54 @@ function openNavItemMobile({
     }
 }
 
-openNavItemMobile({
-    level: 'lv1'
-});
-
-openNavItemMobile({
-    level: 'lv2'
-});
-
-// USER
-let userOptionBtns = $$('.modal-user-option-btn');
-
-for(let userOptionBtn of userOptionBtns) {
-    userOptionBtn.addEventListener('click', function() {
-        for(i = 0; i < userOptionBtns.length; i++) {
-            userOptionBtns[i].classList.remove('active');
-        }
-        this.classList.add('active');
-
-        let checkLogin = this.classList.contains('login');
-        let checkRegister = this.classList.contains('register');
-
-        let forms = $$('.modal-user-content');
-
-        for(let form of forms) {
-            form.style.display = 'none';
-        }
-        if(checkLogin) {
-            let formLogin = $('.modal-user-content.login').style.display = 'flex';
-        }
-        if(checkRegister) {
-            let formRegister = $('.modal-user-content.register').style.display = 'flex';
-        }
+for(let i = 1; i <= maxLevel; i++) {
+    openNavItemMobile({
+        level: i
     });
 }
 
-let headerRespUser = $('.header-resp-user');
+// USER
+// let userOptionBtns = $$('.modal-user-option-btn');
 
-headerRespUser.addEventListener('click', function() {
-    modal.innerHTML = `
-        <div class="modal-overlay" style="background-color: rgba(255, 255, 255, .7);"></div>
-    `;
+// for(let userOptionBtn of userOptionBtns) {
+//     userOptionBtn.addEventListener('click', function() {
+//         for(i = 0; i < userOptionBtns.length; i++) {
+//             userOptionBtns[i].classList.remove('active');
+//         }
+//         this.classList.add('active');
 
-    openModal();
+//         let checkLogin = this.classList.contains('login');
+//         let checkRegister = this.classList.contains('register');
 
-    let modalUser = $('.modal-main.modal-main-user');
-    modalUser.classList.add('open');
+//         let forms = $$('.modal-user-content');
 
-    let modalOverlay = $('.modal-overlay');
-    modalOverlay.addEventListener('click', function() {
-        closeModal();
-        modalUser.classList.remove('open');
-    });
+//         for(let form of forms) {
+//             form.style.display = 'none';
+//         }
+//         if(checkLogin) {
+//             let formLogin = $('.modal-user-content.login').style.display = 'flex';
+//         }
+//         if(checkRegister) {
+//             let formRegister = $('.modal-user-content.register').style.display = 'flex';
+//         }
+//     });
+// }
 
-    let modalClose = $('.modal-close');
-    modalClose.addEventListener('click', function() {
-        closeModal();
-        modalUser.classList.remove('open');
-    });
-})
+// let headerRespUser = $('.header-resp-user');
+
+// headerRespUser.addEventListener('click', function() {
+//     modal.innerHTML = `
+//         <div class="modal-overlay" style="background-color: rgba(255, 255, 255, .7);"></div>
+//     `;
+
+//     openModal();
+
+//     let modalUser = $('.modal-main.modal-main-user');
+//     modalUser.classList.add('open');
+
+//     let modalOverlay = $('.modal-overlay');
+//     modalOverlay.addEventListener('click', function() {
+//         closeModal();
+//         modalUser.classList.remove('open');
+//     });
+// })
