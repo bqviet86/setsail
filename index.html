@@ -1988,17 +1988,17 @@
                                 rho
                             </div>
                         </div>
-                        <div class="footer-content-item">
+                        <form action="" class="footer-content-item">
                             <div class="footer-input-wrap">
                                 <i class="fas fa-user footer-input-icon"></i>
-                                <input type="text" placeholder="Name" class="footer-input">
+                                <input type="text" name="" placeholder="Name" required class="footer-input">
                             </div>
                             <div class="footer-input-wrap">
                                 <i class="ti-email footer-input-icon"></i>
-                                <input type="text" placeholder="Email" class="footer-input">
+                                <input type="email" name="" placeholder="Email" required class="footer-input">
                             </div>
-                            <div class="footer-btn-subscribe">Subscribe</div>
-                        </div>
+                            <input class="footer-btn-subscribe" type="submit" value="Subscribe">
+                        </form>
                     </div>
                 </div>
                 <div class="col-3-space-30 footer-content-col">
@@ -2082,28 +2082,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="row footer-content-item-row">
-                                <div class="col-2-4-space-6 footer-content-col">
-                                    <div class="footer-content-col-img"
-                                        style="background-image: url(./assets/img/footer/footer-img-10-6.jpg);"></div>
-                                </div>
-                                <div class="col-2-4-space-6 footer-content-col">
-                                    <div class="footer-content-col-img"
-                                        style="background-image: url(./assets/img/footer/footer-img-10-7.jpg);"></div>
-                                </div>
-                                <div class="col-2-4-space-6 footer-content-col">
-                                    <div class="footer-content-col-img"
-                                        style="background-image: url(./assets/img/footer/footer-img-10-8.jpg);"></div>
-                                </div>
-                                <div class="col-2-4-space-6 footer-content-col">
-                                    <div class="footer-content-col-img"
-                                        style="background-image: url(./assets/img/footer/footer-img-10-9.jpg);"></div>
-                                </div>
-                                <div class="col-2-4-space-6 footer-content-col">
-                                    <div class="footer-content-col-img"
-                                        style="background-image: url(./assets/img/footer/footer-img-10-10.jpg);"></div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -2147,6 +2125,71 @@
                     <i class="ti-instagram"></i>
                 </a>
             </div>
+        </div>
+    </div>
+
+    <div class="modal-main modal-main-user">
+        <div class="modal-user-container">
+            <div class="modal-user-option">
+                <div class="modal-user-option-btn login active">LOGIN</div>
+                <div class="modal-user-option-btn register">REGISTER</div>
+            </div>
+            <form action="" class="modal-user-content login">
+                <div class="modal-user-input-wrap">
+                    <i class="fas fa-user modal-user-input-icon"></i>
+                    <input type="text" name="" placeholder="User Name" required class="modal-user-input">
+                </div>
+                <div class="modal-user-input-wrap">
+                    <i class="ti-lock modal-user-input-icon"></i>
+                    <input type="password" name="" placeholder="Password" required class="modal-user-input">
+                </div>
+                <div class="modal-user-login-remember">
+                    <input type="checkbox" name="rememberme" id="rememberme">
+                    <label for="rememberme" class="modal-user-remember-label">
+                        <div class="modal-user-remember-checkbox">
+                            <div class="modal-user-remember-checkbox-checked"></div>
+                        </div>
+                        Remember me
+                    </label>
+                </div>
+                <a href="https://setsail.qodeinteractive.com/my-account/lost-password/" class="modal-user-lost-password"
+                    target="_blank">Lost Your password?</a>
+                <input class="modal-user-submit" type="submit" value="SIGN IN">
+                <div class="modal-user-login-socials">
+                    <div class="modal-user-login-socials-text">Sign in with Facebook or Google+</div>
+                    <div class="modal-user-login-socials-option">
+                        <a href="https://www.facebook.com/" class="modal-user-login-socials-btn facebook"
+                            target="_blank">
+                            Facebook
+                            <div class="modal-user-login-socials-btn-overlay"></div>
+                        </a>
+                        <a href="https://myaccount.google.com/?tab=kk" class="modal-user-login-socials-btn google"
+                            target="_blank">
+                            Google+
+                            <div class="modal-user-login-socials-btn-overlay"></div>
+                        </a>
+                    </div>
+                </div>
+            </form>
+            <form action="" class="modal-user-content register">
+                <div class="modal-user-input-wrap">
+                    <i class="fas fa-user modal-user-input-icon"></i>
+                    <input type="text" name="" placeholder="User Name" required class="modal-user-input">
+                </div>
+                <div class="modal-user-input-wrap">
+                    <i class="ti-email modal-user-input-icon"></i>
+                    <input type="email" name="" placeholder="Email" required class="modal-user-input">
+                </div>
+                <div class="modal-user-input-wrap">
+                    <i class="ti-lock modal-user-input-icon"></i>
+                    <input type="password" name="" placeholder="Password" required class="modal-user-input">
+                </div>
+                <div class="modal-user-input-wrap">
+                    <i class="ti-lock modal-user-input-icon"></i>
+                    <input type="password" name="" placeholder="Repeat Password" required class="modal-user-input">
+                </div>
+                <input class="modal-user-submit" type="submit" value="REGISTER">
+            </form>
         </div>
     </div>
 

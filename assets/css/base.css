@@ -22,17 +22,17 @@ html {
     scroll-behavior: smooth;
 }
 
-html, body {
+body {
     overflow-x: hidden;
 }
 
-html::-webkit-scrollbar {
+body::-webkit-scrollbar {
     height: 0;
     width: 8px;
     background-color: rgb(230, 230, 230);
 }
 
-html::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
     background-color: #777;
     border-radius: 20px;
 }

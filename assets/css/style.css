@@ -73,7 +73,7 @@
 
 .section-text {
     width: 580px;
-    max-width: calc(100% - 16px);
+    max-width: calc(100% - 72px);
     margin: 22px 0 25px;
     font-size: 17px;
     color: #505050;
@@ -168,10 +168,27 @@
     flex-direction: column;
 }
 
+.team-list {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    transition: .2s ease-out;
+}
+
+.team-list::-webkit-scrollbar {
+    height: 10px;
+    background-color: #3abdc1;
+}
+.team-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, .7);
+}
+
 .team-item {
     position: relative;
     display: flex;
     overflow: hidden;
+    scroll-snap-align: start;
 }
 
 .team-info {
@@ -513,7 +530,7 @@
 }
 
 .modal-main {
-    position: absolute;
+    position: fixed;
     z-index: 500;
     inset: 50% auto auto 50%;
     transform: translate(-50%, -50%);
@@ -521,7 +538,6 @@
 }
 
 .modal-main.modal-main-menu {
-    position: fixed;
     inset: 0 -460px 0 auto;
     box-shadow: 0 0 8px rgba(0, 0, 0, .3);
     transform: unset;
@@ -682,6 +698,209 @@
     z-index: 499;
 }
 
+.modal-main.modal-main-user {
+    width: 500px;
+    max-width: calc(100% - 16px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s ease-out;
+}
+
+.modal-main.modal-main-user.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-user-container {
+    background-color: #3fd0d4;
+}
+
+.modal-user-option {
+    width: 100%;
+    display: flex;
+}
+
+.modal-user-option-btn {
+    flex: 1;
+    height: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    user-select: none;
+    color: var(--white-color);
+    background-color: #3abdc1;
+    cursor: pointer;
+}
+
+.modal-user-option-btn.active {
+    background-color: #3fd0d4;
+}
+
+.modal-user-content {
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-user-content.register {
+    display: none;
+}
+
+.modal-user-input-wrap {
+    position: relative;
+}
+
+.modal-user-input-wrap + 
+.modal-user-input-wrap {
+    margin-top: 6px;
+}
+
+.modal-user-input-icon {
+    position: absolute;
+    top: 50%;
+    margin-left: 20px;
+    font-size: 14px;
+    color: var(--white-color);
+    transform: translateY(-50%);
+}
+
+.modal-user-input {
+    width: 100%;
+    padding: 12px 20px 12px 50.6px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    line-height: 26px;
+    color: var(--white-color);
+    background-color: #6fdcdf;
+}
+
+.modal-user-input::placeholder {
+    color: var(--white-color);
+}
+
+.modal-user-login-remember {
+    margin-top: 22px;
+    display: flex;
+
+}
+
+.modal-user-login-remember input {
+    display: none;
+}
+
+.modal-user-remember-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.modal-user-remember-checkbox {
+    margin-right: 14px;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--white-color);
+}
+.modal-user-remember-checkbox-checked {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.modal-user-login-remember input:checked ~ 
+.modal-user-remember-label 
+.modal-user-remember-checkbox-checked {
+    background-color: #3fd0d4;
+}
+
+.modal-user-lost-password {
+    margin-top: 12px;
+    width: max-content;
+    font-size: 14px;
+    color: #299093;
+    transition: .1s ease-out;
+}
+
+.modal-user-lost-password:hover {
+    color: var(--black-color);
+}
+
+.modal-user-submit {
+    margin-top: 22px;
+    padding: 15px 42px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.6px;
+    color: var(--black-color);
+    background-color: var(--white-color);
+    cursor: pointer;
+    transition: .2s ease-out;
+}
+
+.modal-user-submit:hover {
+    color: var(--white-color);
+    background-color: #23a9af;
+}
+
+.modal-user-login-socials {
+    margin: 22px 0 -30px;
+}
+
+.modal-user-login-socials-text {
+    font-size: 14px;
+    color: var(--white-color);
+}
+
+.modal-user-login-socials-option {
+    margin: 22px -25px 0;
+    display: flex;
+}
+
+.modal-user-login-socials-btn {
+    position: relative;
+    flex: 1;
+    height: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    text-transform: uppercase;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.modal-user-login-socials-btn-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: transparent;
+    transition: .1s ease-out;
+}
+
+.modal-user-login-socials-btn.facebook {
+    background-color: #3b5998;
+}
+
+.modal-user-login-socials-btn.google {
+    background-color: #dd4b39;
+}
+
+.modal-user-login-socials-btn:hover 
+.modal-user-login-socials-btn-overlay {
+    background-color: rgba(255, 255, 255, .07);
+}
+
 /* CONTAINER */
 .container {
     margin-top: 80px;
@@ -690,7 +909,6 @@
 .slides {
     position: relative;
     height: 420px;
-    /* display: none; */
 }
 
 .slider {
@@ -1178,7 +1396,8 @@
 
 .footer-btn-subscribe {
     margin-top: 6px;
-    padding: 14px 42px;
+    padding: 16px 42px;
+    border: none;
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
