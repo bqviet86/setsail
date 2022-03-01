@@ -19,22 +19,18 @@ html {
     font-family: 'Poppins', sans-serif;
     letter-spacing: 0.2px;
     color: var(--black-color);
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
-body {
-    overflow-x: hidden;
-}
-
-body::-webkit-scrollbar {
-    height: 0;
+html::-webkit-scrollbar {
     width: 8px;
     background-color: rgb(230, 230, 230);
 }
 
-body::-webkit-scrollbar-thumb {
-    background-color: #777;
+html::-webkit-scrollbar-thumb {
     border-radius: 20px;
+    background-color: #777;
 }
 
 a {
