@@ -329,6 +329,14 @@ headerRespMenu.addEventListener('click', function() {
         navResp.classList.add('open');
     }
     else {
+        let checkNavRespInnerOpen = 0;
+
+        for(let i = 0; i < navRespInner.length; i++) {
+            if(navRespInner[i].classList.contains('open')) {
+                checkNavRespInnerOpen = 1;
+            }
+        }
+
         navRespInner.forEach(item => {
             item.classList.remove('open');
         });
@@ -339,9 +347,14 @@ headerRespMenu.addEventListener('click', function() {
 
         navResp.style.height = '294px';
 
-        setTimeout(function() {
+        if(checkNavRespInnerOpen) {
+            setTimeout(function() {
+                navResp.classList.remove('open');
+            }, 600);
+        }
+        else {
             navResp.classList.remove('open');
-        }, 600);
+        }
     }
 });
 
@@ -410,10 +423,10 @@ for(let userOptionBtn of userOptionBtns) {
             form.style.display = 'none';
         }
         if(checkLogin) {
-            let formLogin = $('.modal-user-content.login').style.display = 'flex';
+            $('.modal-user-content.login').style.display = 'flex';
         }
         if(checkRegister) {
-            let formRegister = $('.modal-user-content.register').style.display = 'flex';
+            $('.modal-user-content.register').style.display = 'flex';
         }
     });
 }
@@ -432,12 +445,6 @@ headerRespUser.addEventListener('click', function() {
 
     let modalOverlay = $('.modal-overlay');
     modalOverlay.addEventListener('click', function() {
-        closeModal();
-        modalUser.classList.remove('open');
-    });
-
-    let modalClose = $('.modal-close');
-    modalClose.addEventListener('click', function() {
         closeModal();
         modalUser.classList.remove('open');
     });
