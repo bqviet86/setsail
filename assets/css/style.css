@@ -1308,8 +1308,12 @@
     flex-wrap: wrap;
 }
 
+.footer-logo-img-wrap {
+    display: flex;
+}
+
 .footer-logo-img {
-    width: 100%;
+    width: 260px;
     max-width: 100%;
 }
 
