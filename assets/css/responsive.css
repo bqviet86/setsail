@@ -277,9 +277,6 @@
     .col-3-space-30:nth-child(4) {
         margin-top: 64px;
     }
-    .footer-logo-img {
-        width: 260px;
-    }
 }
 
 @media (max-width: 47.5em) { /* 760px */
