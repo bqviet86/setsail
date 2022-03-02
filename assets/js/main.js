@@ -8,55 +8,6 @@ let menuBtn = $('.header-right__icon:nth-child(3)');
 let modal = document.createElement('div');
 modal.classList.add('modal');
 
-searchBtn.addEventListener('click', function() {
-    let innerSearch = `
-        <div class="modal-close">
-            <i class="ti-close"></i>
-        </div>
-        <div class="modal-main modal-main-search">
-            <div class="modal-search">
-                <input type="text" placeholder="Search...">
-                <div class="modal-search-btn">Find Now</div>
-            </div>
-        </div>
-        <div class="modal-overlay"></div>
-    `;
-
-    modal.innerHTML = innerSearch;
-    openModal();
-
-    let modalOverlay = $('.modal-overlay');
-    modalOverlay.addEventListener('click', closeModal);
-
-    let modalClose = $('.modal > .modal-close');
-    modalClose.addEventListener('click', closeModal);
-})
-
-// MODAL-MENU-MAP
-menuBtn.addEventListener('click', function() {
-    modal.innerHTML = `
-        <div class="modal-overlay" style="background-color: transparent;"></div>
-    `;
-
-    openModal();
-
-    let modalMenu = document.querySelector('.modal-main.modal-main-menu');
-    modalMenu.classList.add('open');
-
-    let modalOverlay = $('.modal-overlay');
-    modalOverlay.addEventListener('click', function() {
-        closeModal();
-        modalMenu.classList.remove('open');
-    });
-
-    let modalClose = $('.modal-close');
-    modalClose.addEventListener('click', function() {
-        closeModal();
-        modalMenu.classList.remove('open');
-    });
-})
-
-
 function openModal() {
     app.appendChild(modal);
     modal.classList.add('open');
@@ -68,6 +19,54 @@ function closeModal() {
         app.removeChild(modal);
     }, 500);
 }
+
+function useModal({
+    type = '',
+    modalInner = ''
+}) {
+    modal.innerHTML = modalInner;
+
+    openModal();
+
+    let modalType = $(`.modal-main.modal-main-${type}`);
+    modalType.classList.add('open');
+
+    let modalOverlay = $('.modal-overlay');
+    modalOverlay.addEventListener('click', function() {
+        closeModal();
+        modalType.classList.remove('open');
+    });
+
+    let modalCloses = $$('.modal-close');
+
+    for(let modalClose of modalCloses) {
+        modalClose.addEventListener('click', function() {
+            closeModal();
+            modalType.classList.remove('open');
+        });
+    }
+}
+
+searchBtn.addEventListener('click', function() {
+    useModal({
+        type: 'search', 
+        modalInner: `
+            <div class="modal-close">
+                <i class="ti-close"></i>
+            </div>
+            <div class="modal-overlay" style="background-color: rgb(63, 208, 212, .8);"></div>
+        `
+    });
+});
+
+menuBtn.addEventListener('click', function() {
+    useModal({
+        type: 'menu', 
+        modalInner: `
+            <div class="modal-overlay" style="background-color: transparent;"></div>
+        `
+    });
+});
 
 // SLIDER 
 let slides = $$('.slider');
@@ -193,7 +192,7 @@ for(let i = 0; i < paginationTourBtns.length; i++) {
         runTour();
         
         tourIntervalID = setInterval(runTour, 4000);
-    })
+    });
 }
 
 // MODAL-VIDEO
@@ -202,10 +201,11 @@ let videoWrap = $('.section-video-wrap');
 videoWrap.addEventListener('click', function() {
     modal.innerHTML = `
         <div class="modal-main modal-main-video">
-            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/jgZkrA8E5do"
+            <iframe src="https://www.youtube-nocookie.com/embed/jgZkrA8E5do"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+                allowfullscreen>
+            </iframe>
         </div>
         <div class="modal-overlay" style="background-color: rgba(0, 0, 0, .6);"></div>
     `;
@@ -214,7 +214,7 @@ videoWrap.addEventListener('click', function() {
 
     let modalOverlay = $('.modal-overlay');
     modalOverlay.addEventListener('click', closeModal);
-})
+});
 
 // REVIEW
 let reviewList = $('.review-list');
@@ -282,7 +282,7 @@ for(let i = 0; i < paginationReviewBtns.length; i++) {
         runReview();
         
         reviewIntervalID = setInterval(runReview, 4000);
-    })
+    });
 }
 
 // COUNTER
@@ -313,7 +313,7 @@ window.addEventListener('scroll', function() {
         countRun({countDivNum: 3, lastNum: 197})
         stopCount = 0;
     }
-})
+});
 
 // HEADER MOBILE
 let navResp = $('.nav-resp'); 
@@ -434,18 +434,10 @@ for(let userOptionBtn of userOptionBtns) {
 let headerRespUser = $('.header-resp-user');
 
 headerRespUser.addEventListener('click', function() {
-    modal.innerHTML = `
-        <div class="modal-overlay" style="background-color: rgba(255, 255, 255, .7);"></div>
-    `;
-
-    openModal();
-
-    let modalUser = $('.modal-main.modal-main-user');
-    modalUser.classList.add('open');
-
-    let modalOverlay = $('.modal-overlay');
-    modalOverlay.addEventListener('click', function() {
-        closeModal();
-        modalUser.classList.remove('open');
+    useModal({
+        type: 'user', 
+        modalInner: `
+            <div class="modal-overlay" style="background-color: rgba(255, 255, 255, .7);"></div>
+        `
     });
-})
+});

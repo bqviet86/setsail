@@ -538,12 +538,28 @@
     transition: .4s ease-in;
 }
 
+.modal-main.modal-main-search {
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s ease-out;
+}
+
+.modal-main.modal-main-search.open {
+    opacity: 1;
+    visibility: visible;
+}
+
 .modal-main.modal-main-menu {
     inset: 0 -460px 0 auto;
     box-shadow: 0 0 8px rgba(0, 0, 0, .3);
     transform: unset;
     z-index: 1000;
     transition: .4s ease-in;
+}
+
+.modal-main.modal-main-menu.open {
+    inset: 0 0 0 auto;
 }
 
 .modal-main.modal-main-video {
@@ -553,10 +569,6 @@
     animation: fadeIn ease-out .6s;
     animation-delay: .8s;
     animation-fill-mode: both;
-}
-
-.modal-main.modal-main-menu.open {
-    inset: 0 0 0 auto;
 }
 
 .modal-close {
@@ -695,7 +707,6 @@
 .modal-overlay {
     position: absolute;
     inset: 0;
-    background-color: rgb(63, 208, 212, .8);
     z-index: 499;
 }
 
@@ -1140,7 +1151,7 @@
 
 .pagination {
     margin: 32px auto auto;
-    max-width: calc(100% - 128px);
+    max-width: calc(100% - 64px);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

@@ -55,22 +55,28 @@
         align-items: center;
     }
     .header-resp-menu {
-        height: 32px;
+        height: 38.5px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-end;
         cursor: pointer;
-        padding: 8px;
+        padding: 11.25px 8px;
     }
     .header-resp-menu-bar {
         background-color: var(--white-color);
     }
+    .header-resp-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .header-resp-logo img {
-        width: 112px;
+        width: 114px;
     }
     .header-resp-user {
-        padding: 10px;
+        padding: 7.25px;
+        display: flex;
         color: var(--white-color);
         cursor: pointer;
     }
